@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #instaled apps
+    #'Users_app',
+    'Users_app.apps.UsersAppConfig',
+    #3rd party
 ]
 
 MIDDLEWARE = [
@@ -138,9 +142,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# User model (modelo de usuario padrão será oque eu construi no models.py e forms.py)
+AUTH_USER_MODEL = 'Users_app.User'
