@@ -2,6 +2,7 @@ asgiref==3.5.0
 backcall==0.2.0
 Django==4.0.4
 django-autoslug==1.9.8
+django-model-utils==4.2.0
 iniconfig==1.1.1
 pickleshare==0.7.5
 Pillow==9.1.0

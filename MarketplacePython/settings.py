@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
+SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema de TemplateDoesNotExists
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     #instaled apps
     #'Users_app',
     'Users_app.apps.UsersAppConfig',
+    'Pages_app.apps.PagesAppConfig',
+    'Produtos_app.apps.ProdutosAppConfig',
     #3rd party
 ]
 
@@ -58,7 +60,8 @@ ROOT_URLCONF = 'MarketplacePython.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        #'DIRS': [ BASE_DIR / 'templates'],
+        'DIRS': [ os.path.join(BASE_DIR , 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,9 +133,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -143,6 +146,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -152,3 +158,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # User model (modelo de usuario padrão será oque eu construi no models.py e forms.py)
 AUTH_USER_MODEL = 'Users_app.User'
+
+#configuração dos arquivos a serem salvos
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
