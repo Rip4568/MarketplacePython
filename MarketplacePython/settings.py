@@ -82,14 +82,17 @@ WSGI_APPLICATION = 'MarketplacePython.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+
+""" Configuração padrão para acessar
+o banco de dados do postgres """
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_MarketplacePython',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',#padrão
+        'NAME': 'db_MarketplacePython',#nome do banco de dados criado
+        'USER': 'postgres',#padrão
+        'PASSWORD': 'admin',#senha criada
+        'HOST': 'localhost',#padrão
+        'PORT': '5432',#padrão
     }
 }
 
@@ -165,6 +168,6 @@ AUTH_USER_MODEL = 'Users_app.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-import socket
+""" import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips] """

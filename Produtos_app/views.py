@@ -29,3 +29,4 @@ class ProductListView(ListView):
         context["category"] = self.category
         context["categories"] = Category.objects.all()
         return context
+

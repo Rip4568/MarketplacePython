@@ -7,7 +7,8 @@
 {% if category %}
 {{ category.name }}
 {% else %}
-Produtos
+Produtos{% comment %} 
+podia colocar uma tag h1 {% endcomment %}
 {% endif %}
 {% endblock title %}
 
@@ -62,6 +63,7 @@ Produtos
                 {% elif product_list|length|remainder == 1 %}
                 <div class="card border-0"></div>
                 <div class="card border-0"></div>
+                {% else %}
                 {% endif %}
             </div>
 
@@ -73,3 +75,5 @@ Produtos
 </div>
 
 {% endblock content %}
+
+{% comment %} {% block footer %}{% endblock footer %} seria bom adicionar esse bloco para eventuais rodapés{% endcomment %}
