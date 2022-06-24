@@ -1,3 +1,4 @@
+from Cart_app.forms import CartAddProductForm
 from django.shortcuts import render
 
 from django.shortcuts import get_object_or_404
@@ -8,6 +9,8 @@ from .models import Category, Product
 
 class ProductDetailView(DetailView):
     queryset = Product.available.all()
+    extra_context = {"form":CartAddProductForm()}
+    template_name = 'products/product_detail.html'
 
 
 class ProductListView(ListView):

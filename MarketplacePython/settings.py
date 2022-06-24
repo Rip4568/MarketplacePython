@@ -23,7 +23,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema
 SECRET_KEY = 'django-insecure-jumo4esalf_x+bj$w&0r@khmon3)rp3onr8_@zszr!=e$76!(y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -39,11 +39,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #installed apps
     'debug_toolbar',
+    'widget_tweaks',
     #'Users_app',
     'Users_app.apps.UsersAppConfig',
     'Pages_app.apps.PagesAppConfig',
     'Produtos_app.apps.ProdutosAppConfig',
+    'Cart_app.apps.CartAppConfig',
     #3rd party
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -168,6 +171,13 @@ AUTH_USER_MODEL = 'Users_app.User'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-""" import socket
+import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
-INTERNAL_IPS = [ip[:-1] + "1" for ip in ips] """
+INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
+
+
+#Configurações do cart
+CART_SESSION_ID = "cart"
+CART_ITEM_MAX_QUANTITY = 5
+
+CRISPY_TEMPLATE_PACK = 'uni_form'

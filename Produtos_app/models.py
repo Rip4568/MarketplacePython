@@ -2,9 +2,8 @@ from django.db import models
 from autoslug import AutoSlugField
 from django.urls import reverse
 from model_utils.models import TimeStampedModel
+
 # Create your models here.
-
-
 
 class AvailableManager(models.Manager):
     def get_queryset(self):

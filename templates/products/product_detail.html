@@ -5,7 +5,7 @@
 {% block title %}{{ product.name }}{% endblock title %}
 
 {% block content %}
-
+{% load crispy_forms_tags %}
 <div class="container my-3">
     <div class="row">
         <div class="col-lg-3 mb-3 mb-lg-0">
@@ -19,6 +19,19 @@
             <h1 class="font-weight-bold">{{ product.name }}</h1>
             <h2>R$ {{ product.price }}</h2>
             <p>{{ product.description }}</p>
+            <form action="{% url 'Cart_app:cartadd' product.id %}" class="form-group" method="POST">
+                {% csrf_token %}
+                <p class="form-inline">
+                    {{form|crispy}}
+                    {% comment %} {{form.quantity.label_tag}} {% endcomment %}
+                    {% comment %} {% render_field form.quantity class+="form-control" %}
+                    {{ form.override }} {% endcomment %}
+                </p>
+                
+                <button type="submit" class="btn btn-success">Adicionar ao carrinho</button>
+
+                {{ item.update_quantity_form.override }}
+            </form>
             <p>
                 Voltar para o catálogo de
                 <a class="text-decoration-none" href="{{ product.category.get_absolute_url }}">
