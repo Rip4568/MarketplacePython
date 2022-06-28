@@ -1,1 +1,1 @@
-web: gunicorn HerokuDjangoTemplate.wsgi  --log-file -
+web: gunicorn MarketplaceDjango.wsgi  --log-file -
