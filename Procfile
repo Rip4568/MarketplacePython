@@ -1,0 +1,1 @@
+web: gunicorn HerokuDjangoTemplate.wsgi  --log-file -

@@ -12,7 +12,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-from pickle import TRUE
+import django_on_heroku
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema de TemplateDoesNotExists
@@ -182,3 +184,5 @@ CART_SESSION_ID = "cart"
 CART_ITEM_MAX_QUANTITY = 5
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+django_on_heroku.settings(locals())
