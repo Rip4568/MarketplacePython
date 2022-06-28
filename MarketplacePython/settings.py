@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from pickle import TRUE
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema de TemplateDoesNotExists
@@ -23,7 +24,7 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema
 SECRET_KEY = 'django-insecure-jumo4esalf_x+bj$w&0r@khmon3)rp3onr8_@zszr!=e$76!(y'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,16 +38,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    #installed apps
+    #installed apps 3rd party
     'debug_toolbar',
     'widget_tweaks',
+    'crispy_forms',
+    'localflavor',
     #'Users_app',
     'Users_app.apps.UsersAppConfig',
     'Pages_app.apps.PagesAppConfig',
     'Produtos_app.apps.ProdutosAppConfig',
     'Cart_app.apps.CartAppConfig',
-    #3rd party
-    'crispy_forms',
+    'Ordens_app.apps.OrdensAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -149,11 +151,10 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR / 'static']
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -180,4 +181,4 @@ INTERNAL_IPS = [ip[:-1] + "1" for ip in ips]
 CART_SESSION_ID = "cart"
 CART_ITEM_MAX_QUANTITY = 5
 
-CRISPY_TEMPLATE_PACK = 'uni_form'
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

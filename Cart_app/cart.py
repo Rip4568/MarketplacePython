@@ -1,5 +1,7 @@
 from decimal import Decimal
 import copy
+
+from django.conf import settings
 from Cart_app.forms import CartAddProductForm
 from MarketplacePython.settings import CART_ITEM_MAX_QUANTITY
 
@@ -61,6 +63,10 @@ class Cart:
             return sum(
                 Decimal(item["price"]) * item["quantity"] for item in self.cart.values()
                 )
+    
+    def clear(self):
+        del self.session[settings.CART_SESSION_ID]
+        self.save()
         
     def save(self):
         self.session.modified = True

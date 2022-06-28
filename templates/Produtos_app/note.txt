@@ -1,3 +1,0 @@
-Por algum motivo todos os templates derivados do app Produtos_app estão sendo carregados aqui
-1) Solucionar esse problema e fazer com que os templates sejam carregados
-sem a nessidade de existir a pasta Produtos_app dentro de templates
