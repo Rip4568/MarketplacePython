@@ -10,7 +10,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
-from distutils.log import debug
 from pathlib import Path
 import os
 import django_on_heroku
@@ -29,8 +28,9 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema
 #SECRET_KEY = 'django-insecure-jumo4esalf_x+bj$w&0r@khmon3)rp3onr8_@zszr!=e$76!(y'
 SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-#DEBUG = True
-DEBUG = os.getenv('DEBUG')
+#DEBUG = False
+
+DEBUG = os.getenv('DEBUG',default=False) == 'True'
 
 ALLOWED_HOSTS = ['*']
 
@@ -98,17 +98,13 @@ WSGI_APPLICATION = 'MarketplacePython.wsgi.application'
 o banco de dados do postgres """
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',#padrão
-        'NAME': 'db_MarketplacePython',#nome do banco de dados criado
-        'USER': 'postgres',#padrão
-        'PASSWORD': 'admin',#senha criada
-        'HOST': 'localhost',#padrão
-        'PORT': '5432',#padrão
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
-if DEBUG == False:
-    DATABASES['default'] = dj_database_url.config()
+
+DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
 
 
 
@@ -120,13 +116,12 @@ if DEBUG == False:
         'NAME': BASE_DIR / 'db.sqlite3',
         }
     } else {
-        'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'MarketplacePython',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',#padrão
+        'NAME': 'db_MarketplacePython',#nome do banco de dados criado
+        'USER': 'postgres',#padrão
+        'PASSWORD': 'admin',#senha criada
+        'HOST': 'localhost',#padrão
+        'PORT': '5432',#padrão
         }    
     }
       
@@ -180,8 +175,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'Users_app.User'
 
 #configuração dos arquivos a serem salvos
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
@@ -194,4 +190,4 @@ CART_ITEM_MAX_QUANTITY = 5
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-django_on_heroku.settings(locals())
+django_on_heroku.settings(locals())#resolvendo o problema do pytest
