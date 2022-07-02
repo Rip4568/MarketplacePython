@@ -105,7 +105,7 @@ DATABASES = {
 }
 
 
-#DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
+DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
 
 
 
