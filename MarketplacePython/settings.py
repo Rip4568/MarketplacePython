@@ -59,6 +59,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",#adicionado manualmente
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -104,7 +105,7 @@ DATABASES = {
 }
 
 
-DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
+#DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
 
 
 
@@ -116,7 +117,7 @@ DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar p
         'NAME': BASE_DIR / 'db.sqlite3',
         }
     } else {
-        'ENGINE': 'django.db.backends.postgresql',#padrão
+        'ENGINE': 'django.db.backends.postgresql',#padrão .postgresql_psycopg2
         'NAME': 'db_MarketplacePython',#nome do banco de dados criado
         'USER': 'postgres',#padrão
         'PASSWORD': 'admin',#senha criada
@@ -189,5 +190,7 @@ CART_SESSION_ID = "cart"
 CART_ITEM_MAX_QUANTITY = 5
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"#armazenados em cache para sempre e suporte a compactação
 
 django_on_heroku.settings(locals())#resolvendo o problema do pytest
