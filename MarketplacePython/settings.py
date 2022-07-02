@@ -10,11 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+from distutils.log import debug
 from pathlib import Path
 import os
 import django_on_heroku
 from dotenv import load_dotenv
 load_dotenv()
+import dj_database_url
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema de TemplateDoesNotExists
@@ -23,10 +26,11 @@ SETTINGS_PATH = os.path.dirname(os.path.dirname(__file__))#resolvendo o problema
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-jumo4esalf_x+bj$w&0r@khmon3)rp3onr8_@zszr!=e$76!(y'
-
+#SECRET_KEY = 'django-insecure-jumo4esalf_x+bj$w&0r@khmon3)rp3onr8_@zszr!=e$76!(y'
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 
@@ -102,6 +106,11 @@ DATABASES = {
         'PORT': '5432',#padrão
     }
 }
+
+if DEBUG == False:
+    DATABASES['default'] = dj_database_url.config()
+
+
 
 """
 
