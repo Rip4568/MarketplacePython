@@ -36,7 +36,8 @@ Produtos
                 <div class="card">
                     <a href="{{ product.get_absolute_url }}">
                         {% if product.image %}
-                        <img class="card-img-top" src="/media/{{product.image}}" alt="">
+                        <!-- <img class="card-img-top" src="/media/{{product.image}}" alt=""> -->
+                        <img class="card-img-top" src="{{ product.image.url | safe }}" alt="">
                         {% else %}
                         <img class="card-img-top" src="{% static 'images/no_image.png' %}" alt="">
                         {% endif %}
