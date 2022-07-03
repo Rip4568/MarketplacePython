@@ -179,12 +179,15 @@ AUTH_USER_MODEL = 'Users_app.User'
 
 #configuração dos arquivos a serem salvos
 
+#MEDIA_URL = '/media/'
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+#MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+MEDIA_ROOT = 'staticfiles/media/'
 
 #testar o o salvamento dos arquivos na pasta static
 STATICFILES_DIRS  = [
-    os.path.join(BASE_DIR,'media/')
+    os.path.join(BASE_DIR,'media/'),
+    os.path.join(BASE_DIR,'static/')
 ]
 
 import socket
