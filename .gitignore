@@ -142,3 +142,4 @@ cython_debug/
 
 staticfiles
 media
+start_server.cmd

@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'crispy_forms',
     'localflavor',
+    #'cloudinary_storage',antes de testar o cloudinary ver o funcionamento do whitenoise
+    #'cloudinary',
     #'Users_app',
     'Users_app.apps.UsersAppConfig',
     'Pages_app.apps.PagesAppConfig',
@@ -105,7 +107,7 @@ DATABASES = {
 }
 
 
-DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
+#DATABASES['default'] = dj_database_url.config()#mandar somente quando for upar pro heroku
 
 
 
@@ -179,6 +181,11 @@ AUTH_USER_MODEL = 'Users_app.User'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
+
+#testar o o salvamento dos arquivos na pasta static
+STATICFILES_DIRS  = [
+    os.path.join(BASE_DIR,'media/')
+]
 
 import socket
 hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())

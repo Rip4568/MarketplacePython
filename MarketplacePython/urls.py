@@ -31,3 +31,6 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
     urlpatterns += [path("__debug__/", include(debug_toolbar.urls))]
+
+#handler404="helpers.views.handle_not_found"
+""" handle_not_found(request,exception):return render(request,'not-found.html') """
